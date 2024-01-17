@@ -195,3 +195,20 @@ var Programmer = /** @class */ (function (_super) {
     }
     return Programmer;
 }(Person3));
+// ------------------------------------------------------------
+// Modules in TypeScript.
+// In the tsconfig.json file, change the following options to support modern importing and exporting:
+//  "target": "es2016",
+//  "module": "es2015"
+// (Although, for Node projects you very likely want "module": "CommonJS" – Node doesn't  yet support modern importing/exporting.)
+// Now, in your HTML file, change the script import to be of type module:
+// <script type="module" src="/public/script.js"></script>
+// We can now import and export files using ES6:
+// // src/hello.ts
+// export function sayHi() {
+//   console.log('Hello there!');
+// }
+// // src/script.ts
+// import { sayHi } from './hello.js';
+// sayHi(); // Hello there!
+// Note: always import as a JavaScript file, even in TypeScript files.
