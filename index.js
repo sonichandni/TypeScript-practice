@@ -49,8 +49,6 @@ var person2 = {
     location: 'India',
     isProgrammer: false,
 };
-// ------------------------------------------------------------
-0;
 var sayStuff = {
     sayHi: function (name) {
         return "Hi ".concat(name);
@@ -59,6 +57,18 @@ var sayStuff = {
 };
 console.log(sayStuff.sayHi('Chandni'));
 console.log(sayStuff.sayBye('Chandni'));
+var beer = {
+    name: 'Winnie',
+    honey: true
+};
+var dog = {
+    name: 'Bruce',
+    tail: true
+};
+// type Animal4 = {
+//     tail: boolean
+// }
+//ERROR: Duplicate identifier 'Animal4'.ts(2300)
 // ------------------------------------------------------------
 // Functions in TypeScript
 function circle(diam) {
@@ -115,6 +125,10 @@ var sayHello2 = function (person) {
 };
 var sayBye1 = function (person) {
     return 'Seeya ' + person.name;
+};
+var beear1 = {
+    name: 'Winnie',
+    honey: true
 };
 // ------------------------------------------------------------
 // The DOM and type casting

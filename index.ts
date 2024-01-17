@@ -64,7 +64,7 @@ let person2: Person = {
 }
 
 // ------------------------------------------------------------
-0
+// Interfaces are very similar to type aliases, and in many cases you can use either. The key distinction is that type aliases cannot be reopened to add new properties, vs an interface which is always extendable. 
 interface Speech {
     sayHi(name: string): string;
     sayBye: (name: string) => string;
@@ -78,6 +78,45 @@ let sayStuff: Speech = {
 }
 console.log(sayStuff.sayHi('Chandni'));
 console.log(sayStuff.sayBye('Chandni'));
+
+// Extending an interface:
+interface Animal {
+    name: string
+}
+
+interface Beer extends Animal {
+    honey: boolean
+}
+
+const beer: Beer = {
+    name: 'Winnie',
+    honey: true
+}
+
+// Adding new fields to an existing interface:
+interface Animal3 {
+    name: string
+}
+// Re-opening the Animal interface to add a new field
+interface Animal3 {
+    tail: boolean
+}
+const dog: Animal3 = {
+    name: 'Bruce',
+    tail: true
+}
+
+// Here's the key difference between interface and type alias: a type cannot be changed after being created:
+type Animal4 = {
+    name: string
+}
+
+// type Animal4 = {
+//     tail: boolean
+// }
+//ERROR: Duplicate identifier 'Animal4'.ts(2300)
+
+
 
 // ------------------------------------------------------------
 
@@ -158,6 +197,20 @@ const sayHello2 = (person: PersonObject) => {
 }
 const sayBye1 = (person: PersonObject) => {
     return 'Seeya ' + person.name
+}
+
+// Extending a type via intersections:
+type Animal1 = {
+    name: string
+}
+
+type Beer1 = Animal1 & {
+    honey: boolean
+}
+
+const beear1: Beer1 = {
+    name: 'Winnie',
+    honey: true
 }
 
 // ------------------------------------------------------------
