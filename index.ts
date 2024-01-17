@@ -63,7 +63,7 @@ let person2: Person = {
 }
 
 // ------------------------------------------------------------
-
+0
 interface Speech {
     sayHi(name: string): string;
     sayBye: (name: string) => string;
@@ -113,3 +113,78 @@ const logMessage = (msg: string): void => {
 };
 
 logMessage('TypeScript is superb'); // This is the message: TypeScript is superb
+
+let sayHello1: (name: string) => void;
+
+sayHello1 = (name) => {
+    console.log('Hello ' + name);
+}
+sayHello1('Chandni');
+
+// ------------------------------------------------------------
+
+// Dynamic(any) types
+// Using the any type, we can basically revert TypeScript back into JavaScript:
+let age: any = '100';
+age = 100;
+age = {
+    years: 100,
+    months: 2
+}
+
+// ------------------------------------------------------------
+
+// Type Alias
+type StringOrNumber = string | number;
+
+type PersonObject = {
+    name: string;
+    id: StringOrNumber;
+};
+
+const person3: PersonObject = {
+    name: 'Chandni',
+    id: 1
+}
+
+const person4: PersonObject = {
+    name: "Mahi",
+    id: '2'
+}
+
+const sayHello2 = (person: PersonObject) => {
+    return 'Hi ' + person.name
+}
+const sayBye1 = (person: PersonObject) => {
+    return 'Seeya ' + person.name
+}
+
+// ------------------------------------------------------------
+
+// The DOM and type casting
+// TypeScript doesn't have access to the DOM like JavaScript. This means that whenever we try to access DOM elements, TypeScript is never sure that they actually exist.
+
+const link = document.querySelector('a');
+
+// console.log(link.href); //ERROR: 'link' is possibly 'null'.ts(18047) console.log(link?.href); 
+
+// Here we are telling TypeScript that we are certain that this anchor tag exists
+const link1 = document.querySelector('a')!;
+console.log(link1.href);
+
+
+// const form = document.getElementById('signup-form');
+// console.log(form.method); // ERROR: 'form' is possibly 'null'.ts(18047), 'form' is possibly 'null'.ts(18047)
+
+const form = document.getElementById('signup-form') as HTMLFormElement;
+console.log(form.method);
+
+// And TypeScript is happy!
+
+const form1 = document.getElementById('signup-form') as HTMLFormElement;
+
+form.addEventListener('submit', (e: Event) => {
+  e.preventDefault(); // prevents the page from refreshing
+
+//   console.log(e.tarrget); // ERROR: Property 'tarrget' does not exist on type 'Event'. Did you mean 'target'?
+});

@@ -33,6 +33,8 @@ var person2 = {
     location: 'India',
     isProgrammer: false,
 };
+// ------------------------------------------------------------
+0;
 var sayStuff = {
     sayHi: function (name) {
         return "Hi ".concat(name);
@@ -70,3 +72,49 @@ var logMessage = function (msg) {
     console.log('This id the message: ' + msg);
 };
 logMessage('TypeScript is superb'); // This is the message: TypeScript is superb
+var sayHello1;
+sayHello1 = function (name) {
+    console.log('Hello ' + name);
+};
+sayHello1('Chandni');
+// ------------------------------------------------------------
+// Dynamic(any) types
+// Using the any type, we can basically revert TypeScript back into JavaScript:
+var age = '100';
+age = 100;
+age = {
+    years: 100,
+    months: 2
+};
+var person3 = {
+    name: 'Chandni',
+    id: 1
+};
+var person4 = {
+    name: "Mahi",
+    id: '2'
+};
+var sayHello2 = function (person) {
+    return 'Hi ' + person.name;
+};
+var sayBye1 = function (person) {
+    return 'Seeya ' + person.name;
+};
+// ------------------------------------------------------------
+// The DOM and type casting
+// TypeScript doesn't have access to the DOM like JavaScript. This means that whenever we try to access DOM elements, TypeScript is never sure that they actually exist.
+var link = document.querySelector('a');
+// console.log(link.href); //ERROR: 'link' is possibly 'null'.ts(18047) console.log(link?.href); 
+// Here we are telling TypeScript that we are certain that this anchor tag exists
+var link1 = document.querySelector('a');
+console.log(link1.href);
+// const form = document.getElementById('signup-form');
+// console.log(form.method); // ERROR: 'form' is possibly 'null'.ts(18047), 'form' is possibly 'null'.ts(18047)
+var form = document.getElementById('signup-form');
+console.log(form.method);
+// And TypeScript is happy!
+var form1 = document.getElementById('signup-form');
+form.addEventListener('submit', function (e) {
+    e.preventDefault(); // prevents the page from refreshing
+    console.log(e.tarrget); // ERROR: Property 'tarrget' does not exist on type 'Event'. Did you mean 'target'?
+});
