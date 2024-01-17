@@ -1,3 +1,4 @@
+// Reference From: https://www.freecodecamp.org/news/learn-typescript-beginners-guide/
 // ------------------------------------------------------------
 let sport = 'cricket';
 let id = 9;
@@ -188,3 +189,89 @@ form.addEventListener('submit', (e: Event) => {
 
 //   console.log(e.tarrget); // ERROR: Property 'tarrget' does not exist on type 'Event'. Did you mean 'target'?
 });
+
+// Classes in Typescript
+class Person1 {
+    name: string;
+    isCool: boolean;
+    pets: number;
+
+    constructor(n: string, c: boolean, p: number) {
+        this.name = n;
+        this.isCool = c;
+        this.pets = p;
+    }
+
+    sayHello() {
+        return `Hi, my name is ${this.name} and I have ${this.pets} pets`;
+    }
+}
+
+const person5 = new Person1('Chandni', true, 0);
+const person6 = new Person1('Chandni', true, 0);
+// const person6 = new Person1('Mahi', 'yes', 6); // ERROR: Argument of type 'string' is not assignable to parameter of type 'boolean'.ts(2345)
+
+// We could then create a people array that only includes objects constructed from the Person class:
+
+let People: Person1[] = [person5, person6];
+
+// We can add access modifiers to the properties of a class. TypeScript also provides a new access modifier called readonly.
+class Person2 {
+    readonly name: string;
+    private isCool: boolean;
+    protected email: string;
+    public pets: number;
+
+    constructor(n: string, c: boolean, e: string, p: number) {
+        this.name = n;
+        this.isCool = c;
+        this.email = e;
+        this.pets = p;
+    }
+
+    sayName() {
+        console.log(`Your not Heisenberg, You're ${this.name}`);
+    }
+}
+
+const person7 = new Person2('Chandni', true, 'c@mail.com', 0);
+console.log(person7.name)
+// person7.name = 'Mahi'; //ERROR: Cannot assign to 'name' because it is a read-only property.ts(2540)
+// console.log(person7.isCool) //ERROR: Property 'isCool' is private and only accessible within class 'Person2'.ts(2341)
+// console.log(person7.email) // ERROR: Property 'email' is protected and only accessible within class 'Person2' and its subclasses.ts(2445)
+console.log(person7.pets);
+
+
+// We can make our code more concise by constructing class properties this way:
+class Person3 {
+    constructor (
+        readonly name: string,
+        private isCool: boolean,
+        protected email: string,
+        public pets: number
+    ) {}
+
+    sayMyName() {
+        console.log(`Your not Heisenberg, you're ${this.name}`);
+    }
+}
+
+const person8 = new Person3('Danny', false, 'dan@e.com', 1);
+console.log(person1.name); //Danny
+
+// Classes can also be extended, just like in regular JavaScript:
+
+class Programmer extends Person3 {
+    programminLanguages: string[];
+
+    constructor(
+        name: string,
+        isCool: boolean,
+        email: string,
+        pets: number,
+        pL: string[]
+    ) {
+        super(name, isCool, email, pets);
+        this.programminLanguages = pL;
+    }
+}
