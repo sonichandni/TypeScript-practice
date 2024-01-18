@@ -230,3 +230,10 @@ var person11;
 person10 = new Person5('Chandni', 'Pwd@1234');
 person11 = new Person5("Mahi", 'Pwd@1234');
 console.log(person10.formate()); // chandni
+// ------------------------------------------------------------
+// Literal types in TypeScript
+// In addition to the general types string and number, we can refer to specific strings and numbers in type positions:
+// // Union type with a literal type in each position
+var favouriteColor;
+favouriteColor = 'blue';
+// favouriteColor = 'crimson'; // ERROR: Type '"crimson"' is not assignable to type '"red" | "blue" | "green" | "yellow"'.ts(2322)
