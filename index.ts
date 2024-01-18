@@ -356,3 +356,39 @@ class Programmer extends Person3 {
 // sayHi(); // Hello there!
 
 // Note: always import as a JavaScript file, even in TypeScript files.
+
+// ------------------------------------------------------------
+// interfaces can also define function signatures:
+interface Person4 {
+    name: string
+    age: number
+    speak(sentence: string): void
+}
+
+const person9: Person4 = {
+    name: "John",
+    age: 48,
+    speak: sentence => console.log(sentence),
+}
+
+// Interfaces with classes
+interface HasFormatter {
+    formate(): string;
+}
+
+class Person5 implements HasFormatter {
+    constructor(public username: string, protected password: string) {}
+
+    formate() {
+        return this.username.toLocaleLowerCase();
+    }
+}
+
+// Must be objects that implement the HasFormatter interface
+let person10: HasFormatter;
+let person11: HasFormatter;
+
+person10 = new Person5('Chandni', 'Pwd@1234');
+person11 = new Person5("Mahi", 'Pwd@1234');
+
+console.log(person10.formate()); // chandni
