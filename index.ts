@@ -401,3 +401,20 @@ console.log(person10.formate()); // chandni
 let favouriteColor: 'red' | 'blue' | 'green' | 'yellow';
 favouriteColor = 'blue';
 // favouriteColor = 'crimson'; // ERROR: Type '"crimson"' is not assignable to type '"red" | "blue" | "green" | "yellow"'.ts(2322)
+
+// ------------------------------------------------------------
+// Generics
+const addID = <T>(obj: T) => {
+    let id = Math.floor(Math.random() * 1000);
+
+    return {...obj, id}
+}
+
+let person12 = addID({ name: 'John', age: 40 });
+let person13 = addID('Sally'); // Pass in a string - no problem
+
+console.log(person12.id); // 271
+console.log(person12.name); // John
+
+console.log(person13.id);
+// console.log(person13.name); // ERROR: Property 'name' does not exist on type '"Sally" & { id: number; }'.ts(2339)

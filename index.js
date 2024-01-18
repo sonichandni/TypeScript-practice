@@ -13,6 +13,17 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 // Reference From: https://www.freecodecamp.org/news/learn-typescript-beginners-guide/
 // ------------------------------------------------------------
 var sport = 'cricket';
@@ -237,3 +248,15 @@ console.log(person10.formate()); // chandni
 var favouriteColor;
 favouriteColor = 'blue';
 // favouriteColor = 'crimson'; // ERROR: Type '"crimson"' is not assignable to type '"red" | "blue" | "green" | "yellow"'.ts(2322)
+// ------------------------------------------------------------
+// Generics
+var addID = function (obj) {
+    var id = Math.floor(Math.random() * 1000);
+    return __assign(__assign({}, obj), { id: id });
+};
+var person12 = addID({ name: 'John', age: 40 });
+var person13 = addID('Sally'); // Pass in a string - no problem
+console.log(person12.id); // 271
+console.log(person12.name); // John
+console.log(person13.id);
+// console.log(person13.name); // ERROR: Property 'name' does not exist on type '"Sally" & { id: number; }'.ts(2339)
