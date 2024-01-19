@@ -495,3 +495,44 @@ const person15: Person6<string> = {
     age: 46,
     documents: 'passport, p45'
 }
+
+// ------------------------------------------------------------
+// Enums in TypeScript
+// Enums are a special feature that TypeScript brings to JavaScript. Enums allow us to define or declare a collection of related values, that can be numbers or strings, as a set of named constants.
+
+enum ResourceType {
+    BOOK,
+    AUTHOR,
+    FILM,
+    DIRECTOR,
+    PERSON
+}
+
+console.log(ResourceType.BOOK); // 0
+console.log(ResourceType.AUTHOR); // 1
+
+// To start from 1
+enum ResourceType1 {
+    BOOK = 1,
+    AUTHOR,
+    FILM,
+    DIRECTION,
+    PERSON
+}
+
+console.log(ResourceType.BOOK); // 1
+console.log(ResourceType.AUTHOR); // 2
+
+// By default, enums are number based – they store string values as numbers. But they can also be strings:
+
+enum Direction {
+    Up = 'Up',
+    Right = 'Right',
+    Down = 'Down',
+    Left = 'Left'
+}
+
+console.log(Direction.Right)
+console.log(Direction.Down)
+
+// ------------------------------------------------------------

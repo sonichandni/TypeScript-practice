@@ -303,3 +303,38 @@ var person15 = {
     age: 46,
     documents: 'passport, p45'
 };
+// ------------------------------------------------------------
+// Enums in TypeScript
+// Enums are a special feature that TypeScript brings to JavaScript. Enums allow us to define or declare a collection of related values, that can be numbers or strings, as a set of named constants.
+var ResourceType;
+(function (ResourceType) {
+    ResourceType[ResourceType["BOOK"] = 0] = "BOOK";
+    ResourceType[ResourceType["AUTHOR"] = 1] = "AUTHOR";
+    ResourceType[ResourceType["FILM"] = 2] = "FILM";
+    ResourceType[ResourceType["DIRECTOR"] = 3] = "DIRECTOR";
+    ResourceType[ResourceType["PERSON"] = 4] = "PERSON";
+})(ResourceType || (ResourceType = {}));
+console.log(ResourceType.BOOK); // 0
+console.log(ResourceType.AUTHOR); // 1
+// To start from 1
+var ResourceType1;
+(function (ResourceType1) {
+    ResourceType1[ResourceType1["BOOK"] = 1] = "BOOK";
+    ResourceType1[ResourceType1["AUTHOR"] = 2] = "AUTHOR";
+    ResourceType1[ResourceType1["FILM"] = 3] = "FILM";
+    ResourceType1[ResourceType1["DIRECTION"] = 4] = "DIRECTION";
+    ResourceType1[ResourceType1["PERSON"] = 5] = "PERSON";
+})(ResourceType1 || (ResourceType1 = {}));
+console.log(ResourceType.BOOK); // 1
+console.log(ResourceType.AUTHOR); // 2
+// By default, enums are number based – they store string values as numbers. But they can also be strings:
+var Direction;
+(function (Direction) {
+    Direction["Up"] = "Up";
+    Direction["Right"] = "Right";
+    Direction["Down"] = "Down";
+    Direction["Left"] = "Left";
+})(Direction || (Direction = {}));
+console.log(Direction.Right);
+console.log(Direction.Down);
+// ------------------------------------------------------------
