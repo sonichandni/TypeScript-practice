@@ -293,7 +293,13 @@ var arr = [
     { material: 'plastic', length: 30 }
 ];
 logLengths(arr);
-// 29
-// 4
-// 30
-// Generics are an awesome feature of TypeScript!
+var person14 = {
+    name: 'John',
+    age: 48,
+    documents: ['passport', 'bank statement', 'visa']
+};
+var person15 = {
+    name: 'Delia',
+    age: 46,
+    documents: 'passport, p45'
+};

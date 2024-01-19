@@ -473,3 +473,25 @@ logLengths(arr);
 // 30
 
 // Generics are an awesome feature of TypeScript!
+
+// ------------------------------------------------------------
+
+// Generics with interfaces
+// When we don't know what type a certain value in an object will be ahead of time, we can use a generic to pass in the type:
+interface Person6<T> {
+    name: string;
+    age: number;
+    documents: T;
+}
+
+const person14: Person6<string[]> = {
+    name: 'John',
+    age: 48,
+    documents: ['passport', 'bank statement', 'visa']
+};
+
+const person15: Person6<string> = {
+    name: 'Delia',
+    age: 46,
+    documents: 'passport, p45'
+}
