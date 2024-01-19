@@ -418,3 +418,58 @@ console.log(person12.name); // John
 
 console.log(person13.id);
 // console.log(person13.name); // ERROR: Property 'name' does not exist on type '"Sally" & { id: number; }'.ts(2339)
+
+
+function logLength(a: any) {
+    console.log(a.lenngth);
+    return a;
+}
+
+let hello = 'Hello world';
+logLength(hello);
+
+let howMany = 8;
+logLength(howMany); // undefined (but no TypeScript error - surely we want TypeScript to tell us we've tried to access a length property on a number!)
+
+// We could try using a generic:
+
+function logLength1<T>(a: T) {
+    // console.log(a.length); // ERROR: Property 'length' does not exist on type 'T'.ts(2339)
+    return a;
+}
+
+// Solution: use a generic that extends an interface that ensures every argument passed in has a length property:
+interface hasLength {
+    length: number;
+}
+
+function logLength2<T extends hasLength>(a: T) {
+    console.log(a.length);
+    return a;
+}
+
+let hello1 = 'Heelo World';
+logLength2(hello);
+
+let howMany1 = 8;
+// logLength2(howMany1); // ERROR: Argument of type 'number' is not assignable to parameter of type 'hasLength'.ts(2345)
+
+// We could also write a function where the argument is an array of elements that all have a length property:
+function logLengths<T extends hasLength>(a: T[]) {
+    a.forEach((element) => {
+        console.log(element.length);
+    })
+}
+
+let arr = [
+    'This string has a length prop',
+    ['This', 'arr', 'has', 'length'],
+    {material: 'plastic', length: 30}
+];
+
+logLengths(arr);
+// 29
+// 4
+// 30
+
+// Generics are an awesome feature of TypeScript!
